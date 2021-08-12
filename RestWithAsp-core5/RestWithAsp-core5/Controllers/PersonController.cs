@@ -11,9 +11,9 @@ namespace RestWithAsp_core5.Controllers
     [Route("api/person")]
     public class PersonController : ControllerBase
     {
-        private readonly IPersonRepository _personService;
+        private readonly IPersonService _personService;
 
-        public PersonController(IPersonRepository personService)
+        public PersonController(IPersonService personService)
         {
             _personService = personService;
         }

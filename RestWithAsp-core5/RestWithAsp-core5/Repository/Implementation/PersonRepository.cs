@@ -1,13 +1,11 @@
 ﻿using RestWithAsp_core5.Model;
 using RestWithAsp_core5.Persistence;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithAsp_core5.Services.Implementation
 {
-    public class PersonRepository : IPersonService
+    public class PersonRepository : IPersonRepository
     {
         private readonly PersonDBContext _personDBContext;
 
