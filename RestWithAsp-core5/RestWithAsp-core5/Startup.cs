@@ -32,7 +32,7 @@ namespace RestWithAsp_core5
         {
 
             services.AddControllers();
-            services.AddScoped<IPersonService, PersonService>();
+            services.AddScoped<IPersonService, PersonRepository>();
             services.AddDbContext<PersonDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddSwaggerGen(c =>
             {
