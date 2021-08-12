@@ -5,7 +5,7 @@ namespace RestWithAsp_core5.Services
 {
     public interface IPersonService
     {
-        IPersonService Create(Person person);
+        Person Create(Person person);
         Person Update(Person person, int id);
         void Delete (int id);
         List<Person> FindAll();

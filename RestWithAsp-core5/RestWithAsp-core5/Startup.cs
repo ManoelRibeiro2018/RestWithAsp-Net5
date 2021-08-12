@@ -2,11 +2,15 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using RestWithAsp_core5.Persistence;
+using RestWithAsp_core5.Services;
+using RestWithAsp_core5.Services.Implementation;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +32,8 @@ namespace RestWithAsp_core5
         {
 
             services.AddControllers();
+            services.AddScoped<IPersonService, PersonService>();
+            services.AddDbContext<PersonDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithAsp_core5", Version = "v1" });
