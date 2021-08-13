@@ -14,6 +14,7 @@ namespace RestWithAsp_core5.Persistence
 
         }
 
-        public DbSet<Person>  Person  { get; set; }
+        public DbSet<Person>  Persons  { get; set; }
+        public DbSet<Book>  Books { get; set; }
     }
 }

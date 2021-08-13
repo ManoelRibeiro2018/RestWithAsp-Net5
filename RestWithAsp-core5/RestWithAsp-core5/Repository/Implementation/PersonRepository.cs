@@ -16,7 +16,7 @@ namespace RestWithAsp_core5.Services.Implementation
         }
         public Person Create(Person person)
         {
-            _personDBContext.Person.Add(person);
+            _personDBContext.Persons.Add(person);
             _personDBContext.SaveChanges();
             var personReturn = FindById(person.Id);
 
@@ -41,18 +41,18 @@ namespace RestWithAsp_core5.Services.Implementation
         {
 
             var personExists = FindById(id);
-            _personDBContext.Person.Remove(personExists);
+            _personDBContext.Persons.Remove(personExists);
             _personDBContext.SaveChanges();
         }
 
         public List<Person> FindAll()
         {
-            return _personDBContext.Person.ToList();
+            return _personDBContext.Persons.ToList();
         }
 
         public Person FindById(int id)
         {
-            return _personDBContext.Person.Where(p => p.Id == id).SingleOrDefault();
+            return _personDBContext.Persons.Where(p => p.Id == id).SingleOrDefault();
         }
 
       
