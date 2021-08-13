@@ -9,17 +9,21 @@ using System.Threading.Tasks;
 
 namespace RestWithAsp_core5.Especific
 {
-    public class BookSpecification : ISpecification<Book>
+    public class BookSpecification : IBookSpecification
     {
-        private readonly IGenericRepository<Book> _bookRepository;
+        // private readonly IBookRepository<Book> _bookRepository;
 
-        public BookSpecification(IGenericRepository<Book> bookRepository)
-        {
-            _bookRepository = bookRepository;
-        }
+        //public BookSpecification(IGenericRepository<Book> bookRepository)
+        //{
+        //        _bookRepository = bookRepository;
+        //}
+        //public bool IsSatisfiedBy(Book Entity)
+        //{
+        //    return _bookRepository.FindById(Entity.Id) != null;
+        //}
         public bool IsSatisfiedBy(Book Entity)
         {
-            return _bookRepository.FindById(Entity.Id) != null;
+            return true;
         }
     }
 }

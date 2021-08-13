@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace RestWithAsp_core5.Repository.Implementation
 {
-    public class BookRepository : IGenericRepository<Book>
+    public class BookRepository : IBookRepository
     {
         private readonly PersonDBContext _personDbContext;
 

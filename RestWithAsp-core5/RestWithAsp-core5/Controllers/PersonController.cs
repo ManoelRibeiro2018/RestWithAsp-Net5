@@ -1,10 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using RestWithAsp_core5.Model;
 using RestWithAsp_core5.Services;
-using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 
 namespace RestWithAsp_core5.Controllers
 {
@@ -12,7 +9,6 @@ namespace RestWithAsp_core5.Controllers
     public class PersonController : ControllerBase
     {
         private readonly IPersonService _personService;
-
         public PersonController(IPersonService personService)
         {
             _personService = personService;
@@ -21,10 +17,14 @@ namespace RestWithAsp_core5.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Person model)
         {
+            if (!ModelState.IsValid)
+            {
+                var msg = ModelState.SelectMany(erro => erro.Value.Errors).Select(msg => msg.ErrorMessage);
+                return BadRequest(msg);
+            }
             var person = _personService.Create(model);
 
             return Created("",person) ;
-           // return CreatedAtAction(nameof(GetById), new { person.Id }, person);
         }
 
         [HttpGet("")]

@@ -1,5 +1,6 @@
 ﻿using RestWithAsp_core5.Model;
 using RestWithAsp_core5.Persistence;
+using RestWithAsp_core5.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;

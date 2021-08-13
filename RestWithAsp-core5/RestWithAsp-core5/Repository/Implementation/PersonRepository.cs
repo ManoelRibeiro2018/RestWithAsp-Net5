@@ -6,7 +6,7 @@ using System.Linq;
 
 namespace RestWithAsp_core5.Services.Implementation
 {
-    public class PersonRepository : IGenericRepository<Person>
+    public class PersonRepository : IPersonRepository
     {
         private readonly PersonDBContext _personDBContext;
 
