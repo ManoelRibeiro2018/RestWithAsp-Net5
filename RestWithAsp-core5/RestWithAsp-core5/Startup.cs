@@ -5,27 +5,39 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.OpenApi.Models;
+using RestWithAsp_core5.Model;
 using RestWithAsp_core5.Persistence;
+using RestWithAsp_core5.Repository;
+using RestWithAsp_core5.Repository.Implementation;
 using RestWithAsp_core5.Services;
 using RestWithAsp_core5.Services.Implementation;
+using Serilog;
 
 namespace RestWithAsp_core5
 {
     public class Startup
     {
+        public IConfiguration Configuration { get; }
+
+        public IWebHostEnvironment WebHostEvironment { get; }
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
+            //WebHostEvironment = webHostEnvironment;
+
+            //Log.Logger = new LoggerConfiguration()
+            //    .WriteTo.Console()
+            //    .CreateLogger();
         }
 
-        public IConfiguration Configuration { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
 
             services.AddControllers();
-            services.AddScoped<IPersonRepository, PersonRepository>();
+            services.AddScoped<IGenericRepository<Person>, PersonRepository>();
+            services.AddScoped<IGenericRepository<Book>, BookRepository>();
             services.AddScoped<IPersonService, PersonService>();
             services.AddDbContext<PersonDBContext>(options => options.UseSqlServer(Configuration.GetConnectionString("Connection")));
             services.AddSwaggerGen(c =>
