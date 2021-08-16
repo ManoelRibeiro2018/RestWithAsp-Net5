@@ -30,7 +30,7 @@ namespace RestWithAsp_core5.Services.Implementation
                 return null;
             }
 
-            _personDBContext.Entry(personExists).CurrentValues.SetValues(person);
+            personExists.Update(person.FirtName, person.LastName, person.Address, person.Gender);
 
             _personDBContext.SaveChanges();
 

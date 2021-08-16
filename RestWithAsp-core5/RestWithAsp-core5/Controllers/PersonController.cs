@@ -26,6 +26,31 @@ namespace RestWithAsp_core5.Controllers
 
             return Created("",person) ;
         }
+        [HttpPut("{id}")]
+        public IActionResult Put(int id, [FromBody] Person model)
+        {
+            if (!ModelState.IsValid)
+            {
+                var msg = ModelState.SelectMany(erro => erro.Value.Errors).Select(msg => msg.ErrorMessage);
+                return BadRequest(msg);
+            }
+
+            var person = _personService.Update(model, id);
+
+            return Ok(person);
+        }
+        [HttpDelete("{id}")]
+        public IActionResult Delete(int id)
+        {
+            if (!ModelState.IsValid)
+            {
+                var msg = ModelState.SelectMany(erro => erro.Value.Errors).Select(msg => msg.ErrorMessage);
+                return BadRequest(msg);
+            }
+
+            _personService.Delete(id);
+            return Ok();
+        }
 
         [HttpGet("")]
         public IActionResult GetAll()
