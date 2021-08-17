@@ -56,7 +56,17 @@ namespace RestWithAsp_core5
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "RestWithAsp_core5", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Title = "RestWithAsp_core5",
+                    Version = "v1",
+                    Description = "AsptnetCore com docker",
+                    Contact = new OpenApiContact
+                    {
+                        Name = "Manoel",
+                        Url = new System.Uri("https://github.com/ManoelRibeiro2018")
+                    }
+                }); ;
             });
         }
 

@@ -1,4 +1,5 @@
-﻿using RestWithAsp_core5.Model;
+﻿using Microsoft.EntityFrameworkCore;
+using RestWithAsp_core5.Model;
 using RestWithAsp_core5.Persistence;
 using System;
 using System.Collections.Generic;
@@ -36,7 +37,8 @@ namespace RestWithAsp_core5.Repository.Implementation
 
         public Book FindById(int id)
         {
-            return _personDbContext.Books.SingleOrDefault(b => b.Id.Equals(id));
+            return _personDbContext.Books.FromSqlRaw("Select * from Books where id = @id", id).SingleOrDefault();
+           // return _personDbContext.Books.SingleOrDefault(b => b.Id.Equals(id));
         }
 
         public Book Update(Book Entity, int id)
