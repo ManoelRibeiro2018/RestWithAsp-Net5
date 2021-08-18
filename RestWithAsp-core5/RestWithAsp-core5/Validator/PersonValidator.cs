@@ -35,11 +35,17 @@ namespace RestWithAsp_core5.Validator
              .NotNull()
              .NotEmpty()
              .WithMessage("Informe o gênero do Usuário");
+
+
+            RuleFor(p => p)
+             .Must(VerifyExist)
+             .NotEmpty()
+             .WithMessage("Usuário ja cadastrado");
         }
 
-        //private bool VerifyExist(Person person)
-        //{
-        //  return  _genericSpecification.IsSatisfiedBy(person);         
-        //}
+        private bool VerifyExist(Person person)
+        {
+            return _genericSpecification.IsSatisfiedBy(person);
+        }
     }
 }
