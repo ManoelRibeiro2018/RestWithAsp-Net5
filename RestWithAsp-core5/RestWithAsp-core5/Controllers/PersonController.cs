@@ -17,11 +17,7 @@ namespace RestWithAsp_core5.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] Person model)
         {
-            if (!ModelState.IsValid)
-            {
-                var msg = ModelState.SelectMany(erro => erro.Value.Errors).Select(msg => msg.ErrorMessage);
-                return BadRequest(msg);
-            }
+          
             var person = _personService.Create(model);
 
             return Created("",person) ;
@@ -29,11 +25,7 @@ namespace RestWithAsp_core5.Controllers
         [HttpPut("{id}")]
         public IActionResult Put(int id, [FromBody] Person model)
         {
-            if (!ModelState.IsValid)
-            {
-                var msg = ModelState.SelectMany(erro => erro.Value.Errors).Select(msg => msg.ErrorMessage);
-                return BadRequest(msg);
-            }
+
 
             var person = _personService.Update(model, id);
 
@@ -42,11 +34,6 @@ namespace RestWithAsp_core5.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            if (!ModelState.IsValid)
-            {
-                var msg = ModelState.SelectMany(erro => erro.Value.Errors).Select(msg => msg.ErrorMessage);
-                return BadRequest(msg);
-            }
 
             _personService.Delete(id);
             return Ok();
